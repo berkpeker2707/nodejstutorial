@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+<body>
+
+<form action="/" method="POST" id="form" target="_blank" class="genform">
+  <label for="email">Email</label> <br>
+  <input type="email" class="form-control" name="email"><br><br>
+  <label for="pwd">Password</label> <br>
+  <input type="password" class="form-control" name="password"><br><br>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  $(document).ready(()=>{
+    $("#form").submit((e)=>{
+e.preventDefault();
+$.ajax({
+  url: "/",
+  type: "post",
+  contentType: "application/json",
+  data: JSON.stringify($("#form").serializeArray()),
+  success: (response)=>{
+    console.log("sucessfully got response");
+    console.log(response);
+  }
+})
+    });
+  })
+</script>
+</body>
+</html>
